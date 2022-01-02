@@ -32,8 +32,8 @@ public class SelenoidMobileDriver implements WebDriverProvider {
         desiredCapabilities.setCapability("language", "en");
         desiredCapabilities.setCapability("enableVNC", true);
         desiredCapabilities.setCapability("enableVideo", true);
-        desiredCapabilities.setCapability("appPackage", "org.wikipedia.alpha");
-        desiredCapabilities.setCapability("appActivity", "org.wikipedia.main.MainActivity");
+        desiredCapabilities.setCapability("appPackage", "com.waytohey.mobile");
+        desiredCapabilities.setCapability("appActivity", "ru.mylove.android.ui.splash.SplashActivity");
         desiredCapabilities.setCapability("app", apkUrl());
 
 
@@ -42,7 +42,7 @@ public class SelenoidMobileDriver implements WebDriverProvider {
 
     private URL apkUrl() {
         try {
-            return new URL("https://github.com/wikimedia/apps-android-wikipedia/releases/download/latest/app-alpha-universal-release.apk");
+            return new URL("https://github.com/vkos15/android_waytohey/releases/download/v112094/w2h_112094.apk");
         } catch (MalformedURLException e) {
             e.printStackTrace();
         }

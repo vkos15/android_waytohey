@@ -21,7 +21,11 @@ public class LoginPage {
 
     @Step("Открываем окно логина")
     public LoginPage openLoginWindow() {
-        $x("//android.view.View[@content-desc=\"Log in\"]").click();
+        SelenideElement login_button=$x("//android.view.View[@content-desc=\"Log in\"]");
+       if (!login_button.isDisplayed()) //на разных версиях android селекторы разные
+        $x("//android.view.View[@text=\"Log in\"]").click();
+               else
+           login_button.click();
         return this;
     }
 
@@ -45,7 +49,8 @@ public class LoginPage {
     @Step("Проверяем сообщение об ошибке")
     public LoginPage checkErrorLoginMessage(String error) {
         //$("#input_login+i.error_message").shouldBe(visible).shouldHave(text(error));
-        $x("//*[@resource-id='input_login']/following-sibling::android.widget.TextView").shouldBe(visible).shouldHave(text(error));
+        // $x("//*[@resource-id='input_login']/following-sibling::android.widget.TextView").shouldBe(visible).shouldHave(text(error));
+        $x("//*[@resource-id='input_login']/following-sibling::*[1]").shouldBe(visible).shouldHave(text(error));
         return this;
     }
 
