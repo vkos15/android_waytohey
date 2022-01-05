@@ -3,29 +3,23 @@ package android.waytohey.pages;
 import android.waytohey.config.waytohey.WaytoheyProject;
 import com.codeborne.selenide.Selenide;
 import com.codeborne.selenide.SelenideElement;
+import com.codeborne.selenide.WebDriverRunner;
 import io.appium.java_client.MobileBy;
 import io.qameta.allure.Step;
 
+import static android.waytohey.testdata.TestData.userSuccess;
 import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selenide.*;
 
 public class LoginPage {
 
-
-    //private SelenideElement login =   $(MobileBy.id("input_login"));
     private SelenideElement login  = $x("//*[@resource-id='input_login']");
     private SelenideElement password =  $x("//*[@resource-id='input_pass']");
-  //  private SelenideElement password = $(MobileBy.id("input_pass"));
-    private SelenideElement submitLogin = $x("//android.widget.Button[@text=\"Let's go\"]");
 
     @Step("Открываем окно логина")
     public LoginPage openLoginWindow() {
-        SelenideElement login_button=$x("//android.view.View[@content-desc=\"Log in\"]");
-       if (!login_button.isDisplayed()) //на разных версиях android селекторы разные
-        $x("//android.view.View[@text=\"Log in\"]").click();
-               else
-           login_button.click();
+        WebDriverRunner.getWebDriver().get("https://waytohey.com/#login");
         return this;
     }
 
@@ -43,41 +37,38 @@ public class LoginPage {
 
     @Step("Войти")
     public void submitLoginForm() {
-        submitLogin.click();
+        SelenideElement submitLogin = $x("//*[@text=\"Let's go\"]");
+        if (!submitLogin.isDisplayed())
+            $x("//*[@content-desc=\"Let's go\"]").click();
+        else submitLogin.click();
     }
 
-    @Step("Проверяем сообщение об ошибке")
+    @Step("Проверяем, что отобразилось сообщение об ошибке")
     public LoginPage checkErrorLoginMessage(String error) {
-        //$("#input_login+i.error_message").shouldBe(visible).shouldHave(text(error));
-        // $x("//*[@resource-id='input_login']/following-sibling::android.widget.TextView").shouldBe(visible).shouldHave(text(error));
-        $x("//*[@resource-id='input_login']/following-sibling::*[1]").shouldBe(visible).shouldHave(text(error));
+      SelenideElement error_with_text = $$(MobileBy.className("android.view.View")).filterBy(text(error)).first();
+      //на старых версиях chrome webview локаторы отличаются
+        // и проверить конкретный текст ошибки невозможно, проверяем просто наличие ошибки
+      if (!error_with_text.isDisplayed())
+          $x("//*[@resource-id='input_login']/following-sibling::*[1]").shouldBe(visible);
         return this;
     }
 
     @Step("Проверяем сообщение об ошибке")
     public LoginPage checkErrorPasswordMessage(String error) {
-        $x("//*[@resource-id='input_pass']/following-sibling::android.widget.TextView").shouldBe(visible).shouldHave(text(error));
+        SelenideElement error_with_text = $$(MobileBy.className("android.view.View")).filterBy(text(error)).first();
+        //на старых версиях chrome webview локаторы отличаются
+        // и проверить конкретный текст ошибки невозможно, проверяем просто наличие ошибки возле поля
+        if (!error_with_text.isDisplayed())
+            $x("//*[@resource-id='input_pass']/following-sibling::*[1]").shouldBe(visible);
         return this;
     }
 
     @Step("Входим под пользователем {login} ")
     public void login(String login, String password) {
-        open("#login");
-        this.login.shouldBe(visible).setValue(login);
-        this.password.setValue(password);
-        submitLogin.click();
-        $("#ivisitcard_info").shouldBe(visible);
+        this.openLoginWindow()
+                .typeLogin(login)
+                .typePassword(password)
+                .submitLoginForm();
+        $x("//*[@resource-id='ivisitcard_info']").shouldBe(visible);
     }
-
-
-    @Step("Логин по authKey")
-    public void loginByAuthKey(String authKey) {
-        if (!System.getProperty("environment").equals("prod"))
-            Selenide.open(authKey, "", WaytoheyProject.configW2H.auth_login(), WaytoheyProject.configW2H.auth_pass());
-        else open(authKey);
-    }
-
-
-
-
 }
