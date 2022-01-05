@@ -6,7 +6,7 @@
 
 https://jenkins.autotests.cloud/job/08-vkulikova15-android_waytohey/
 
-Предусмотрена возможность запуска тестов через browserstack и на удаленном selenoid:
+Предусмотрена возможность запуска тестов в browserstack и на удаленном сервере с помощью selenoid:
 
 ![Сборка в Jenkins](https://github.com/vkos15/android_waytohey/blob/master/images/Jenkins.png)
 
@@ -57,26 +57,16 @@ exist_email=
 allure serve build/allure-results
 ```
 
-![Отчет Allure](https://github.com/vkos15/waytohey_tests/blob/main/images/Allure%20Report.png)
+![Отчет Allure](https://github.com/vkos15/android_waytohey/blob/master/images/Allure%20Report%20.png)
 
 
 ## Отчет содержит скриншоты, а так же видео-записи прохождения тестов: ##
 
-![Видео прохождения теста](https://github.com/vkos15/waytohey_tests/blob/main/images/test_profile_video.gif)
-
-## Интеграция с Allure TestOps ##
-
-![Allure TestOps](https://github.com/vkos15/waytohey_tests/blob/main/images/Allure%20TestOps.png)
-
-## Интеграция с Jira ##
-
-Доступен список тест-кейсов, а так же приложен результат запуска автотестов 
-
-![Jira](https://github.com/vkos15/waytohey_tests/blob/main/images/WayToHey%20tests%20Jira%20.png)
+![Видео прохождения теста](https://github.com/vkos15/android_waytohey/blob/master/images/video.gif)
 
 
 # Уведомления о прохождении автотестов: # 
 
 Оповещения о статусе сборки со ссылкой на детальный отчет отправляются в **Telegram**
 
-![Отчет Allure](https://github.com/vkos15/waytohey_tests/blob/main/images/Telegram%20notification.png)
+![Уведомление в Telegram](https://github.com/vkos15/android_waytohey/blob/master/images/Telegram.png)
