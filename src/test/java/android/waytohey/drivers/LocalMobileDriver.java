@@ -36,9 +36,9 @@ public class LocalMobileDriver implements WebDriverProvider {
         desiredCapabilities.setCapability("version", Project.configLocal.version());
         desiredCapabilities.setCapability("locale", "en");
         desiredCapabilities.setCapability("language", "en");
-        desiredCapabilities.setCapability("appPackage", "org.wikipedia.alpha");
-        desiredCapabilities.setCapability("appActivity", "org.wikipedia.main.MainActivity");
-        desiredCapabilities.setCapability("app", getAbsolutePath("src/test/resources/app-alpha-universal-release.apk"));
+        desiredCapabilities.setCapability("appPackage", "com.waytohey.mobile");
+        desiredCapabilities.setCapability("appActivity", "ru.mylove.android.ui.splash.SplashActivity");
+        desiredCapabilities.setCapability("app", getAbsolutePath("src/test/resources/w2h_112094.apk"));
         desiredCapabilities.setCapability("disableWindowAnimation", true);
 
 
