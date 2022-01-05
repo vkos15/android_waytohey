@@ -44,7 +44,7 @@ tasks.withType(JavaCompile) {
 tasks.withType(Test) {
     systemProperties(System.getProperties())
     useJUnitPlatform()
-    systemProperty("environment",System.getProperty("environment", "emulator"))
+    systemProperty("environment",System.getProperty("environment", "browserstack"))
     testLogging {
         lifecycle {
 //            events "started", "failed"
