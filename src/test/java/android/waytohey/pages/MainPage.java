@@ -6,17 +6,15 @@ import io.qameta.allure.Step;
 
 import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Condition.visible;
-import static com.codeborne.selenide.Selenide.$$;
-import static com.codeborne.selenide.Selenide.$x;
+import static com.codeborne.selenide.Selenide.*;
 
 public class MainPage {
     private final static String TEXT_ON_MAIN_PAGE = "Free dating website for connecting singles";
 
     @Step("Проверяем текст на главной странице")
     public MainPage checkTextOnMainPage() {
-        SelenideElement text_section= $x("//*[@text='"+TEXT_ON_MAIN_PAGE+"']");
-        if(!text_section.isDisplayed())
-        $x("//*[@content-desc='"+TEXT_ON_MAIN_PAGE+"']").shouldBe(visible);
+        SelenideElement text_section = $x("//*[contains(@text,'" + TEXT_ON_MAIN_PAGE + "') or contains (@content-desc,'" + TEXT_ON_MAIN_PAGE + "') ]");
+        text_section.shouldBe(visible);
         return this;
     }
 
