@@ -1,4 +1,4 @@
-# Проект автотестов для мобильного приложения [waytohey.com](https://play.google.com/store/apps/details?id=com.waytohey.mobile)
+# Проект автотестов для мобильного приложения [Waytohey](https://play.google.com/store/apps/details?id=com.waytohey.mobile)
 
 ![Главная сайта](https://github.com/vkos15/android_waytohey/blob/master/images/mainPage.png)
 
