@@ -25,8 +25,6 @@ public class SelenoidMobileDriver implements WebDriverProvider {
 
         desiredCapabilities.setCapability("platformName", "android");
         desiredCapabilities.setCapability("deviceName", Project.configSelenoid.deviceName());
-
-
         desiredCapabilities.setCapability("version", Project.configSelenoid.version());
         desiredCapabilities.setCapability("locale", "en");
         desiredCapabilities.setCapability("language", "en");
@@ -35,7 +33,6 @@ public class SelenoidMobileDriver implements WebDriverProvider {
         desiredCapabilities.setCapability("appPackage", "com.waytohey.mobile");
         desiredCapabilities.setCapability("appActivity", "ru.mylove.android.ui.splash.SplashActivity");
         desiredCapabilities.setCapability("app", apkUrl());
-
 
         return new AndroidDriver(getSelenoidUrl(), desiredCapabilities);
     }
